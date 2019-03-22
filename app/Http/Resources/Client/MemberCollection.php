@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Client;
 
 
-class UserCollection extends ResourceCollection
+use App\Http\Resources\ResourceCollection;
+
+class MemberCollection extends ResourceCollection
 {
 
     /**

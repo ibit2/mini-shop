@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('username');
             $table->string('pwd');
             $table->string('nickname');
+            $table->boolean('is_available')->default(true);
             $table->timestamps();
         });
     }

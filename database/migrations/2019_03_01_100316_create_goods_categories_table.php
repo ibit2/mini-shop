@@ -22,6 +22,7 @@ class CreateGoodsCategoriesTable extends Migration
             $table->string('icon')->comment('图标')->nullable();
             $table->integer('order')->comment('排序')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

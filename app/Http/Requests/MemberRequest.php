@@ -4,7 +4,9 @@ namespace App\Http\Requests;
 
 
 
-class UserRequest extends BaseRequest
+use Illuminate\Validation\Rule;
+
+class MemberRequest extends BaseRequest
 {
     public function rules()
     {
@@ -16,19 +18,20 @@ class UserRequest extends BaseRequest
                     'lastId'=>'required_with:pageSize|integer',
                 ];
                 break;
-            case 'add':
-                return [
-
-                ];
-                break;
             case 'detail':
                 return [
-                    'id'=>'required|integer|exists:users'
+                    'id'=>'required|integer|exists:members'
+                ];
+                break;
+            case 'add':
+                return [
+                    'phone'=>['required','regex:/^1[3|4|5|8][0-9]\d{4,8}$/','unique:members']
                 ];
                 break;
             case 'update':
                 return [
-                    'id'=>'required|integer|exists:users'
+                    'id'=>'required|integer|exists:members',
+                    'phone'=>['sometimes','regex:/^1[3|4|5|8][0-9]\d{4,8}$/',Rule::unique('members')->ignore($this->id)]
                 ];
                 break;
             case 'delete':
@@ -38,7 +41,7 @@ class UserRequest extends BaseRequest
                 break;
             case 'isAvailable':
                 return [
-                    'id'=>'required|integer|exists:users'
+                    'id'=>'required|integer|exists:members'
                 ];
                 break;
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Manage;
 
-use App\User;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
 
@@ -12,7 +12,8 @@ class AuthController extends BaseController
     {
         $username = $request->input('username');
         $pwd = $request->input('pwd');
-        $user = User::username($username)->first();
+        $userService = new UserService();
+        $user = $userService->getOneByUsername($username);
         if (empty($user)) {
             return $this->fail('用户不存在');
         }

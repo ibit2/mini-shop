@@ -29,4 +29,5 @@ trait BaseModel
 
         return $arrayCamelCase;
     }
+
 }

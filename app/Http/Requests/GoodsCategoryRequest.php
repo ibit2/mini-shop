@@ -3,32 +3,28 @@
 namespace App\Http\Requests;
 
 
-
-class UserRequest extends BaseRequest
+class GoodsCategoryRequest extends BaseRequest
 {
     public function rules()
     {
         $method = $this->route()->getActionMethod();
         switch ($method) {
-            case 'list':
-                return [
-                    'pageSize'=>'sometimes|integer',
-                    'lastId'=>'required_with:pageSize|integer',
-                ];
-                break;
             case 'add':
                 return [
-
+                    'pid'=>'required|integer',
+                    'name'=>'required|string',
+                    'icon'=>'sometimes|url',
+                    'order'=>'sometimes|integer',
                 ];
                 break;
             case 'detail':
                 return [
-                    'id'=>'required|integer|exists:users'
+                    'id'=>'required|integer|exists:goods_categories'
                 ];
                 break;
             case 'update':
                 return [
-                    'id'=>'required|integer|exists:users'
+                    'id'=>'required|integer|exists:goods_categories'
                 ];
                 break;
             case 'delete':
@@ -36,14 +32,10 @@ class UserRequest extends BaseRequest
                     'ids'=>'required|array'
                 ];
                 break;
-            case 'isAvailable':
-                return [
-                    'id'=>'required|integer|exists:users'
-                ];
-                break;
 
             default:
                 return [];
         }
+
     }
 }

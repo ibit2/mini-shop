@@ -3,15 +3,15 @@
 namespace App\Services;
 
 
-use App\User;
+use App\Member;
 
-class UserService
+class MemberService
 {
     use BaseService;
 
     public function __construct()
     {
-        $this->modelClass = User::class;
+        $this->modelClass = Member::class;
     }
 
     //禁用和启用
@@ -22,10 +22,8 @@ class UserService
         return $model->save();
     }
 
-    public function getOneByUsername($username)
+    public function getOneByPhone($phone)
     {
-        return $this->modelClass::username($username)->first();
+        return $this->modelClass::phone($phone)->first();
     }
-
-
 }

@@ -2,40 +2,69 @@
 
 namespace App\Http\Controllers\Manage;
 
-use App\GoodsCategory;
-use Illuminate\Http\Request;
+use App\Http\Requests\GoodsCategoryRequest;
 use App\Http\Controllers\BaseController;
+use App\Http\Resources\Manage\GoodsCategoryCollection;
+use App\Http\Resources\Manage\GoodsCategoryResource;
+use App\Services\GoodsCategoryService;
 
 class GoodsCategoryController extends BaseController
 {
+    protected $goodsCategoryService;
 
-    public function index()
+    public function __construct()
     {
-        return $this->success([
-            'goodsCategories' => GoodsCategory::get()
-        ]);
+        $this->goodsCategoryService = new GoodsCategoryService();
     }
 
-
-    public function store(Request $request)
+    //分页列表和全局列表
+    public function list(GoodsCategoryRequest $request)
     {
-        //
+        $rs = [];
+        $goodsCategories = $this->goodsCategoryService->list($request);
+        $rs['goodsCategories'] = new GoodsCategoryCollection($goodsCategories);
+        return $this->success($rs);
     }
 
-
-    public function show(GoodsCategory $goodsCategory)
+    //树型列表
+    public function treeList(GoodsCategoryRequest $request)
     {
-        //
+        $rs = [];
+        $goodsCategories = $this->goodsCategoryService->treeList($request);
+        $rs['goodsCategories'] = $goodsCategories;
+        return $this->success($rs);
     }
 
-
-    public function update(Request $request, GoodsCategory $goodsCategory)
+    //详情
+    public function detail(GoodsCategoryRequest $request)
     {
-        //
+        $id = $request->input('id');
+        $user = $this->goodsCategoryService->detail($id);
+        return $this->success(new GoodsCategoryResource($user));
     }
 
-    public function destroy(GoodsCategory $goodsCategory)
+    //添加
+    public function add(GoodsCategoryRequest $request)
     {
-        //
+        $data = $request->all();
+        $this->goodsCategoryService->add($data);
+        return $this->success();
+    }
+
+    //修改
+    public function update(GoodsCategoryRequest $request)
+    {
+        $id = $request->input('id');
+        $data = $request->all();
+        $this->goodsCategoryService->update($id, $data);
+        return $this->success();
+    }
+
+    //删除和批量删除
+    public function delete(GoodsCategoryRequest $request)
+    {
+        $ids = $request->input('ids');
+        $this->goodsCategoryService->delete($ids);
+        return $this->success();
     }
 }

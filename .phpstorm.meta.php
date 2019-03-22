@@ -5,7 +5,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2019-03-18 05:19:41.
+    * Generated on 2019-03-22 15:44:37.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -113,7 +113,6 @@ namespace PHPSTORM_META {
         'files' => \Illuminate\Filesystem\Filesystem::class,
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
-        'graphql' => \Rebing\GraphQL\GraphQL::class,
         'hash' => \Illuminate\Hashing\BcryptHasher::class,
         'log' => \Illuminate\Log\Writer::class,
         'mailer' => \Illuminate\Mail\Mailer::class,
@@ -258,7 +257,6 @@ namespace PHPSTORM_META {
         'files' => \Illuminate\Filesystem\Filesystem::class,
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
-        'graphql' => \Rebing\GraphQL\GraphQL::class,
         'hash' => \Illuminate\Hashing\BcryptHasher::class,
         'log' => \Illuminate\Log\Writer::class,
         'mailer' => \Illuminate\Mail\Mailer::class,
@@ -403,7 +401,6 @@ namespace PHPSTORM_META {
         'files' => \Illuminate\Filesystem\Filesystem::class,
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
-        'graphql' => \Rebing\GraphQL\GraphQL::class,
         'hash' => \Illuminate\Hashing\BcryptHasher::class,
         'log' => \Illuminate\Log\Writer::class,
         'mailer' => \Illuminate\Mail\Mailer::class,
@@ -548,7 +545,6 @@ namespace PHPSTORM_META {
         'files' => \Illuminate\Filesystem\Filesystem::class,
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
-        'graphql' => \Rebing\GraphQL\GraphQL::class,
         'hash' => \Illuminate\Hashing\BcryptHasher::class,
         'log' => \Illuminate\Log\Writer::class,
         'mailer' => \Illuminate\Mail\Mailer::class,
@@ -693,7 +689,6 @@ namespace PHPSTORM_META {
         'files' => \Illuminate\Filesystem\Filesystem::class,
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
-        'graphql' => \Rebing\GraphQL\GraphQL::class,
         'hash' => \Illuminate\Hashing\BcryptHasher::class,
         'log' => \Illuminate\Log\Writer::class,
         'mailer' => \Illuminate\Mail\Mailer::class,
@@ -838,7 +833,6 @@ namespace PHPSTORM_META {
         'files' => \Illuminate\Filesystem\Filesystem::class,
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
-        'graphql' => \Rebing\GraphQL\GraphQL::class,
         'hash' => \Illuminate\Hashing\BcryptHasher::class,
         'log' => \Illuminate\Log\Writer::class,
         'mailer' => \Illuminate\Mail\Mailer::class,
@@ -983,7 +977,6 @@ namespace PHPSTORM_META {
         'files' => \Illuminate\Filesystem\Filesystem::class,
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
-        'graphql' => \Rebing\GraphQL\GraphQL::class,
         'hash' => \Illuminate\Hashing\BcryptHasher::class,
         'log' => \Illuminate\Log\Writer::class,
         'mailer' => \Illuminate\Mail\Mailer::class,

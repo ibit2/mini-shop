@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Manage;
 
 use Illuminate\Http\Resources\Json\Resource;
 
-class RoleResource extends Resource
+class MemberResource extends Resource
 {
     /**
      * Transform the resource into an array.
@@ -16,9 +16,11 @@ class RoleResource extends Resource
     {
        return [
            'id'=>$this->id,
-           'name'=>$this->name,
-           'permissions'=>$this->whenLoaded('permissions'),
-           'users'=>$this->whenLoaded('users'),
+           'phone'=>$this->phone,
+           'avatar'=>$this->avatar,
+           'nickname'=>$this->nickname,
+           'isAvailable'=>$this->isAvailable,
+           'createdAt'=>$this->createdAt->getTimestamp(),
        ];
     }
 }

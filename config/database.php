@@ -52,6 +52,11 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
+            'options' => array(
+                PDO::ATTR_EMULATE_PREPARES=>false,
+                PDO::ATTR_STRINGIFY_FETCHES => false
+            )
+
         ],
 
         'pgsql' => [

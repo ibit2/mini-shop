@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Manage;
 
 
-class RoleCollection extends ResourceCollection
+use App\Http\Resources\ResourceCollection;
+
+class GoodsCategoryCollection extends ResourceCollection
 {
 
     /**

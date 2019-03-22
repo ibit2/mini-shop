@@ -10,6 +10,9 @@ class User extends Authenticatable implements JWTSubject
 {
     use BaseModel;
     protected $guarded = [];
+    protected $casts = [
+        'is_available' => 'boolean'
+    ];
 
     public function roles()
     {
@@ -31,6 +34,7 @@ class User extends Authenticatable implements JWTSubject
         return $query->where('username', $username);
     }
 
+
     public function getPermissions()
     {
         $roles = $this->roles()->with('permissions')->get();
@@ -41,10 +45,7 @@ class User extends Authenticatable implements JWTSubject
             }
         });
         return $permissions;
-
     }
-
-
 
 
 }

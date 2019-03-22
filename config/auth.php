@@ -36,7 +36,7 @@ return [
     */
 
     'guards' => [
-        'h5' => [
+        'client' => [
             'driver' => 'jwt',
             'provider' => 'members',
         ],

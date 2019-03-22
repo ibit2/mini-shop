@@ -15,8 +15,11 @@ class CreateMembersTable extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('wx_avatar');
-            $table->string('wx_nickname');
+            $table->string('phone')->unique();
+            $table->string('pwd');
+            $table->string('avatar');
+            $table->string('nickname');
+            $table->boolean('is_available')->default(true);
             $table->timestamps();
         });
     }

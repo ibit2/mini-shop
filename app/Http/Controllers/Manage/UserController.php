@@ -3,47 +3,73 @@
 namespace App\Http\Controllers\Manage;
 
 use App\Http\Requests\UserRequest;
-use App\Http\Resources\UserCollection;
-use App\Http\Resources\UserResource;
-use App\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
+use App\Http\Resources\Manage\UserCollection;
+use App\Http\Resources\Manage\UserResource;
+use App\Services\UserService;
 
 class UserController extends BaseController
 {
+    protected $userService;
 
-    public function index(Request $request)
+    public function __construct()
     {
-        $limit = $request->input('limit', 15);
-        $count = User::filter($request->all())->count();
-        $users = new UserCollection(User::filter($request->all())->with('roles')->limit($limit)->get());
-        return $this->success([
-            'users' => $users,
-            'count' => $count
+        $this->userService = new UserService();
+    }
+
+    //分页列表和全局列表
+    public function list(UserRequest $request)
+    {
+        $limit = 0;
+        $rs = [];
+        if ($request->has('pageSize')) {
+            $limit = $request->input('pageSize');
+            $rs['count'] = $this->userService->getCount($request);
+        }
+        $users = $this->userService->list($request, $limit, [
+            'roles'
         ]);
+        $rs['users'] = new UserCollection($users);
+        return $this->success($rs);
     }
 
-    public function show(User $user)
+    //详情
+    public function detail(UserRequest $request)
     {
+        $id = $request->input('id');
+        $user = $this->userService->detail($id);
         return $this->success(new UserResource($user));
     }
 
-    public function store(UserRequest $request)
+    //添加
+    public function add(UserRequest $request)
     {
-        return $this->success(new UserResource(User::create($request->all())));
+        $data = $request->all();
+        $this->userService->add($data);
+        return $this->success();
     }
 
-
-    public function update(UserRequest $request, User $user)
+    //修改
+    public function update(UserRequest $request)
     {
-        $user->update($request->all());
-        return $this->success(new UserResource($user));
+        $id = $request->input('id');
+        $data = $request->all();
+        $this->userService->update($id, $data);
+        return $this->success();
     }
 
-
-    public function delete(User $user)
+    //删除和批量删除
+    public function delete(UserRequest $request)
     {
-        $user->delete();
-        return $this->success($user);
+        $ids = $request->input('ids');
+        $this->userService->delete($ids);
+        return $this->success();
+    }
+    //禁用和启用
+    public function isAvailable(UserRequest $request)
+    {
+        $id = $request->input('id');
+        $this->userService->isAvailable($id);
+        return $this->success();
     }
 }
