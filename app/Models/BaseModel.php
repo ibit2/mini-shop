@@ -10,7 +10,13 @@ trait BaseModel
 
     public function getAttribute($key)
     {
+        if (property_exists(self::class, 'prohibitedAttributes')) {
+            if (in_array($key, $this->prohibitedAttributes)) {
+                return parent::getAttribute($key);
+            }
+        }
         return parent::getAttribute(snake_case($key));
+
     }
 
     public function setAttribute($key, $value)

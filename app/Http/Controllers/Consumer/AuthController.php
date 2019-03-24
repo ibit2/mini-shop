@@ -73,7 +73,7 @@ class AuthController extends BaseController
         $memberService = new MemberService();
         $payload = $this->parsePayload('consumer');
         $id = $payload['sub'];
-        $data = $request->all();
+        $data = $request->only(['phone','avatar','nickname']);
         $memberService->update($id, $data);
         return $this->success();
     }

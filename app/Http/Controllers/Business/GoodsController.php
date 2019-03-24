@@ -2,85 +2,64 @@
 
 namespace App\Http\Controllers\Business;
 
-use App\Goods;
-use Illuminate\Http\Request;
+use App\Http\Requests\Business\GoodsRequest;
 use App\Http\Controllers\BaseController;
+use App\Http\Resources\Business\GoodsCollection;
+use App\Http\Resources\Business\GoodsResource;
+use App\Services\GoodsService;
 
 class GoodsController extends BaseController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    protected $goodsService;
+
+    public function __construct()
     {
-        //
+        $this->goodsService = new GoodsService();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    //分页列表
+    public function list(GoodsRequest $request)
     {
-        //
+
+        $rs = [];
+        $limit = $request->input('pageSize');
+        $rs['count'] = $this->goodsService->getCount($request);
+        $goods = $this->goodsService->list($request,$limit,['goodsCategory']);
+        $rs['goods'] = new GoodsCollection($goods);
+        return $this->success($rs);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    //详情
+    public function detail(GoodsRequest $request)
     {
-        //
+        $id = $request->input('id');
+        $user = $this->goodsService->detail($id,['goodsCategory']);
+        return $this->success(new GoodsResource($user));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Goods  $goods
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Goods $goods)
+    //添加
+    public function add(GoodsRequest $request)
     {
-        //
+        $data = $request->all();
+        $this->goodsService->add($data);
+        return $this->success();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Goods  $goods
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Goods $goods)
+    //修改
+    public function update(GoodsRequest $request)
     {
-        //
+        $id = $request->input('id');
+        $data = $request->all();
+        $this->goodsService->update($id, $data);
+        return $this->success();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Goods  $goods
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Goods $goods)
+    //单删除
+    public function delete(GoodsRequest $request)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Goods  $goods
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Goods $goods)
-    {
-        //
+        $id = $request->input('id');
+        $this->goodsService->delete($id);
+        return $this->success();
     }
 }

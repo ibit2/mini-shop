@@ -5,7 +5,7 @@ namespace App\Http\Resources\Business;
 
 use App\Http\Resources\ResourceCollection;
 
-class MemberCollection extends ResourceCollection
+class GoodsCollection extends ResourceCollection
 {
 
     /**

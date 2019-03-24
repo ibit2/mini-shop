@@ -3,15 +3,15 @@
 namespace App\Services;
 
 
-use App\Models\GoodsCategory;
+use App\Models\Goods;
 use Illuminate\Http\Request;
 
-class GoodsCategoryService
+class GoodsService
 {
     use BaseService;
     public function __construct()
     {
-        $this->modelClass = GoodsCategory::class;
+        $this->modelClass = Goods::class;
     }
     public function treeList(Request $request)
     {

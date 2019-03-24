@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Business;
 
-use App\Http\Requests\GoodsCategoryRequest;
+use App\Http\Requests\Business\GoodsCategoryRequest;
 use App\Http\Controllers\BaseController;
 use App\Http\Resources\Business\GoodsCategoryCollection;
 use App\Http\Resources\Business\GoodsCategoryResource;
@@ -14,10 +14,11 @@ class GoodsCategoryController extends BaseController
 
     public function __construct()
     {
+
         $this->goodsCategoryService = new GoodsCategoryService();
     }
 
-    //分页列表和全局列表
+    //全量列表
     public function list(GoodsCategoryRequest $request)
     {
         $rs = [];
@@ -60,11 +61,11 @@ class GoodsCategoryController extends BaseController
         return $this->success();
     }
 
-    //删除和批量删除
+    //单删除
     public function delete(GoodsCategoryRequest $request)
     {
-        $ids = $request->input('ids');
-        $this->goodsCategoryService->delete($ids);
+        $id = $request->input('id');
+        $this->goodsCategoryService->delete($id);
         return $this->success();
     }
 }

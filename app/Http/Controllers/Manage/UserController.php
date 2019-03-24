@@ -17,7 +17,7 @@ class UserController extends BaseController
         $this->userService = new UserService();
     }
 
-    //分页列表和全局列表
+    //分页列表和全量列表
     public function list(UserRequest $request)
     {
         $limit = 0;

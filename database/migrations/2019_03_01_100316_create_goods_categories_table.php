@@ -21,6 +21,7 @@ class CreateGoodsCategoriesTable extends Migration
             $table->string('name')->comment('名称');
             $table->string('icon')->comment('图标')->nullable();
             $table->integer('order')->comment('排序')->default(0);
+            $table->integer('merchant_id')->comment('商户id');
             $table->timestamps();
             $table->softDeletes();
         });

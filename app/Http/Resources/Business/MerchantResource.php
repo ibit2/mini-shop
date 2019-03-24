@@ -4,7 +4,7 @@ namespace App\Http\Resources\Business;
 
 use Illuminate\Http\Resources\Json\Resource;
 
-class MemberResource extends Resource
+class MerchantResource extends Resource
 {
     /**
      * Transform the resource into an array.
@@ -17,10 +17,13 @@ class MemberResource extends Resource
        return [
            'id'=>$this->id,
            'phone'=>$this->phone,
+           'name'=>$this->name,
            'avatar'=>$this->avatar,
-           'nickname'=>$this->nickname,
+           'status'=>$this->status,
            'isAvailable'=>$this->isAvailable,
            'createdAt'=>$this->createdAt,
+           'updatedAt'=>$this->updatedAt,
+
        ];
     }
 }

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Business;
 
+use App\Http\Requests\BaseRequest;
 
 class GoodsCategoryRequest extends BaseRequest
 {
@@ -11,28 +12,27 @@ class GoodsCategoryRequest extends BaseRequest
         switch ($method) {
             case 'add':
                 return [
-                    'pid'=>'required|integer',
-                    'name'=>'required|string',
-                    'icon'=>'sometimes|url',
-                    'order'=>'sometimes|integer',
+                    'pid' => 'required|integer',
+                    'name' => 'required|string',
+                    'icon' => 'sometimes|url',
+                    'order' => 'sometimes|integer',
                 ];
                 break;
             case 'detail':
                 return [
-                    'id'=>'required|integer|exists:goods_categories'
+                    'id' => 'required|integer|exists:goods_categories'
                 ];
                 break;
             case 'update':
                 return [
-                    'id'=>'required|integer|exists:goods_categories'
+                    'id' => 'required|integer|exists:goods_categories'
                 ];
                 break;
             case 'delete':
                 return [
-                    'ids'=>'required|array'
+                    'id' => 'required|integer|exists:goods_categories'
                 ];
                 break;
-
             default:
                 return [];
         }

@@ -28,7 +28,6 @@ class MerchantRequest extends BaseRequest
                 return [
                     'phone'=>['required','regex:/^1[3|4|5|8][0-9]\d{4,8}$/','unique:merchants'],
                     'pwd'=>'required',
-                    'name'=>'required',
                     'status'=>'required|integer|in:1,2,3',
                 ];
                 break;

@@ -17,7 +17,7 @@ class RoleController extends BaseController
         $this->roleService = new RoleService();
     }
 
-    //分页列表和全局列表
+    //分页列表和全量列表
     public function list(RoleRequest $request)
     {
         $limit = 0;

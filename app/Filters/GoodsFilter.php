@@ -2,7 +2,7 @@
 
 use EloquentFilter\ModelFilter;
 
-class GoodsCategoryFilter extends ModelFilter
+class GoodsFilter extends ModelFilter
 {
     /**
      * Related Models that have ModelFilters as well as the method on the ModelFilter
