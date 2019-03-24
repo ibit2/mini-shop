@@ -16,6 +16,8 @@ class CreateRolesTable extends Migration
         Schema::create('roles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->tinyInteger('type')->comment('类型:1-平台，2-商户');
+            $table->integer('merchant_id')->default(0)->comment('商户id');
             $table->timestamps();
         });
     }

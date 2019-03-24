@@ -2,49 +2,69 @@
 
 namespace App\Http\Controllers\Manage;
 
-use App\Http\Requests\RoleRequest;
-use App\Http\Resources\RoleCollection;
-use App\Http\Resources\RoleResource;
-use App\Role;
-use Illuminate\Http\Request;
+use App\Http\Requests\Manage\RoleRequest;
 use App\Http\Controllers\BaseController;
+use App\Http\Resources\Manage\RoleCollection;
+use App\Http\Resources\Manage\RoleResource;
+use App\Services\RoleService;
 
 class RoleController extends BaseController
 {
+    protected $roleService;
 
-    public function index(Request $request)
+    public function __construct()
     {
-        return $this->success([
-            'roles' => new RoleCollection(Role::with([
-                'permissions',
-                'users',
-            ])->get())
-        ]);
+        $this->roleService = new RoleService();
     }
 
-
-    public function store(RoleRequest $request)
+    //分页列表和全局列表
+    public function list(RoleRequest $request)
     {
-        return $this->success(new RoleResource(Role::create($request->all())));
+        $limit = 0;
+        $rs = [];
+        if ($request->has('pageSize')) {
+            $limit = $request->input('pageSize');
+            $rs['count'] = $this->roleService->getCount($request);
+        }
+        $request->merge(['type'=>1]);
+        $users = $this->roleService->list($request, $limit);
+        $rs['roles'] = new RoleCollection($users);
+        return $this->success($rs);
     }
 
-
-    public function show(Role $role)
+    //详情
+    public function detail(RoleRequest $request)
     {
-        return $this->success(new RoleResource($role));
+        $id = $request->input('id');
+        $user = $this->roleService->detail($id,['permissions']);
+        return $this->success(new RoleResource($user));
     }
 
-
-    public function update(RoleRequest $request, Role $role)
+    //添加
+    public function add(RoleRequest $request)
     {
-        $role->update($request->all());
-        return $this->success(new RoleResource($role));
+        $data = $request->all();
+        $data['type'] = 1;
+        $this->roleService->add($data);
+        return $this->success();
     }
 
-
-    public function destroy(Role $role)
+    //修改
+    public function update(RoleRequest $request)
     {
-        $role->delete();
-        return $this->success($role);
+        $id = $request->input('id');
+        $data = $request->all();
+        $data['type'] = 1;
+        $this->roleService->update($id, $data);
+        return $this->success();
     }
+
+    //单删除
+    public function delete(RoleRequest $request)
+    {
+        $id = $request->input('id');
+        $this->roleService->delete($id);
+        return $this->success();
+    }
+
 }

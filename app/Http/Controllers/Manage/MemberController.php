@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Manage;
 
-use App\Http\Requests\MemberRequest;
+use App\Http\Requests\Manage\MemberRequest;
 use App\Http\Controllers\BaseController;
 use App\Http\Resources\Manage\MemberCollection;
 use App\Http\Resources\Manage\MemberResource;
 use App\Services\MemberService;
+
+/*
+ * 用户
+ */
 
 class MemberController extends BaseController
 {
@@ -17,15 +21,12 @@ class MemberController extends BaseController
         $this->memberService = new MemberService();
     }
 
-    //分页列表和全局列表
+    //分页列表
     public function list(MemberRequest $request)
     {
-        $limit = 0;
         $rs = [];
-        if ($request->has('pageSize')) {
-            $limit = $request->input('pageSize');
-            $rs['count'] = $this->memberService->getCount($request);
-        }
+        $limit = $request->input('pageSize');
+        $rs['count'] = $this->memberService->getCount($request);
         $users = $this->memberService->list($request, $limit);
         $rs['members'] = new MemberCollection($users);
         return $this->success($rs);

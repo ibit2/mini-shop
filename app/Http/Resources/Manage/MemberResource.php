@@ -20,7 +20,8 @@ class MemberResource extends Resource
            'avatar'=>$this->avatar,
            'nickname'=>$this->nickname,
            'isAvailable'=>$this->isAvailable,
-           'createdAt'=>$this->createdAt->getTimestamp(),
+           'createdAt'=>$this->createdAt,
+           'updatedAt'=>$this->updatedAt,
        ];
     }
 }

@@ -12,9 +12,10 @@ class RoleSeeder extends Seeder
     public function run()
     {
         $data = [
-            ['id' => 1, 'name' => '超级管理员'],
-            ['id' => 2, 'name' => '普通管理员'],
+            ['id' => 1, 'name' => '平台超级管理员','type'=>1],
+            ['id' => 2, 'name' => '平台普通管理员','type'=>1],
+            ['id' => 3, 'name' => '商户超级管理员','type'=>2],
         ];
-        \App\Role::insert($data);
+        \App\Models\Role::insert($data);
     }
 }

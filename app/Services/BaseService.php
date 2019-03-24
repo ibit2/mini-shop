@@ -16,9 +16,9 @@ trait BaseService
     }
 
     //详情
-    public function detail($id)
+    public function detail($id,$with=[])
     {
-        return $this->getOneById($id);
+        return $this->getOneById($id,$with);
     }
 
     //添加
@@ -48,9 +48,9 @@ trait BaseService
         return $this->modelClass::filter($request->all())->count();
     }
 
-    protected function getOneById($id)
+    protected function getOneById($id,$with=[])
     {
-        return $this->modelClass::find($id);
+        return $this->modelClass::with($with)->find($id);
     }
 
     protected function getMany(Request $request, $limit = 0, $with = [])

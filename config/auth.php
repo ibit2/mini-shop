@@ -36,11 +36,14 @@ return [
     */
 
     'guards' => [
-        'client' => [
+        'consumer' => [
             'driver' => 'jwt',
             'provider' => 'members',
         ],
-
+        'business' => [
+            'driver' => 'jwt',
+            'provider' => 'merchants',
+        ],
         'manage' => [
             'driver' => 'jwt',
             'provider' => 'users',
@@ -65,13 +68,17 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\User::class,
-        ],
         'members' => [
             'driver' => 'eloquent',
-            'model' => App\Member::class,
+            'model' => App\Models\Member::class,
+        ],
+        'merchants' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Merchant::class,
+        ],
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
         ],
 
         // 'users' => [

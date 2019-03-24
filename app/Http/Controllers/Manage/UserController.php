@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Manage;
 
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\Manage\UserRequest;
 use App\Http\Controllers\BaseController;
 use App\Http\Resources\Manage\UserCollection;
 use App\Http\Resources\Manage\UserResource;
@@ -58,13 +58,14 @@ class UserController extends BaseController
         return $this->success();
     }
 
-    //删除和批量删除
+    //单删除和批量删除
     public function delete(UserRequest $request)
     {
         $ids = $request->input('ids');
         $this->userService->delete($ids);
         return $this->success();
     }
+
     //禁用和启用
     public function isAvailable(UserRequest $request)
     {

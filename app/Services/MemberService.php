@@ -3,7 +3,7 @@
 namespace App\Services;
 
 
-use App\Member;
+use App\Models\Member;
 
 class MemberService
 {

@@ -18,6 +18,7 @@ class CreatePermissionsTable extends Migration
             $table->integer('pid');
             $table->string('name');
             $table->string('display_name');
+            $table->tinyInteger('type')->comment('类型:1-平台，2-商户');
             $table->timestamps();
         });
     }

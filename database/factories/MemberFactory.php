@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\Member::class, function (Faker $faker) {
+$factory->define(App\Models\Member::class, function (Faker $faker) {
     return [
         'phone'=>$faker->phoneNumber,
         'pwd'=>sha1('123456'),

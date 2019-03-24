@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\Address::class, function (Faker $faker) {
+$factory->define(App\Models\Address::class, function (Faker $faker) {
     return [
         //
     ];

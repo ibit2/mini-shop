@@ -3,7 +3,7 @@
 namespace App\Services;
 
 
-use App\GoodsCategory;
+use App\Models\GoodsCategory;
 use Illuminate\Http\Request;
 
 class GoodsCategoryService

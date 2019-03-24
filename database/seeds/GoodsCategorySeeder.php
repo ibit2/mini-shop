@@ -18,7 +18,7 @@ class GoodsCategorySeeder extends Seeder
             ['id' => 4, 'pid' => 1, 'name' => '虾类'],
         ];
         foreach ($data as $v) {
-            \App\GoodsCategory::create($v);
+            \App\Models\GoodsCategory::create($v);
         }
 
     }
