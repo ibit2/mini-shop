@@ -40,8 +40,8 @@ class GoodsCategoryController extends BaseController
     public function detail(GoodsCategoryRequest $request)
     {
         $id = $request->input('id');
-        $user = $this->goodsCategoryService->detail($id);
-        return $this->success(new GoodsCategoryResource($user));
+        $goodCategory = $this->goodsCategoryService->detail($id);
+        return $this->success(new GoodsCategoryResource($goodCategory));
     }
 
     //添加

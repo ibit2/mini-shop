@@ -17,6 +17,15 @@ Route::group([
     #商品分类
     Route::post('goods-category/list', 'GoodsCategoryController@list')->name('goods-category.list');
     Route::post('goods-category/tree-list', 'GoodsCategoryController@treeList')->name('goods-category.treeList');
+    #商品
+    Route::post('goods/list', 'GoodsController@list')->name('goods.list');
+    Route::post('goods/detail', 'GoodsController@detail')->name('goods.detail');
+    Route::group(['middleware'=>['auth:consumer']], function () {
+        #用户购物车
+        Route::post('member-cart/list', 'MemberCartController@list')->name('member-cart.list');
+
+
+    });
 
 });
 //B端

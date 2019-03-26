@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class GoodsSpecValue extends Model
+class MemberAddress extends Model
 {
     use BaseModel;
     protected $guarded = [];

@@ -20,4 +20,8 @@ class GoodsFilter extends ModelFilter
     {
         return $this->where('merchant_id', $merchantId);
     }
+    public function goodsCategoryId($goodsCategoryId)
+    {
+        return $this->where('goods_category_id', $goodsCategoryId);
+    }
 }

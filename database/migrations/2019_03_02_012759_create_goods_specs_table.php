@@ -16,6 +16,8 @@ class CreateGoodsSpecsTable extends Migration
         Schema::create('goods_specs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->comment('规格名');
+            $table->integer('goods_id')->comment('商品id');
+            $table->integer('merchant_id')->comment('商户id');
             $table->timestamps();
         });
     }

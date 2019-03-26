@@ -17,8 +17,9 @@ class CreateGoodsSkusTable extends Migration
             $table->increments('id');
             $table->string('goods_spec_value_path')->comment('规格值组成的路径');
             $table->decimal('sale_price')->comment('销售价');
-            $table->decimal('line_price')->comment('划线价');
+            $table->decimal('line_price')->default(0.00)->comment('划线价');
             $table->unsignedInteger('stock_num')->comment('库存');
+            $table->boolean('is_default')->comment('是否默认');
             $table->integer('goods_id')->comment('所属商品');
             $table->timestamps();
         });
